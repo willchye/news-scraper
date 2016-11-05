@@ -53,19 +53,19 @@ app.get('/', function(req, res) {
 // A GET request to scrape the echojs website.
 app.get('/scrape', function(req, res) {
 	// first, we grab the body of the html with request
-  request('http://www.nytimes.com/section/us?WT.nav=page&action=click&contentCollection=U.S.&module=HPMiniNav&pgtype=Homepage&region=TopBar', function(error, response, html) {
+  request('http://www.nytimes.com/', function(error, response, html) {
   	// then, we load that into cheerio and save it to $ for a shorthand selector
     var $ = cheerio.load(html);
     // now, we grab every h2 within an article tag, and do the following:
-    $('div.story-body').each(function(i, element) {
+    $('h2.story-heading').each(function(i, element) {
 
     		// save an empty result object
 				var result = {};
 
 				// add the text and href of every link, 
 				// and save them as properties of the result obj
-				result.title = $(element).children('h2.headline').text();
-				result.link = $(element).children('p.summary').text();
+				result.title = $(element).children('a').text();
+				result.link = $(element).children('a').attr('href');
 
 				// using our Article model, create a new entry.
 				// Notice the (result):
@@ -160,9 +160,13 @@ app.post('/articles/:id', function(req, res){
 });
 
 
+app.get('/delete', function(req, res){
 
-
-
+mongoose.connection.collections['articles'].drop( function(err) {
+    console.log('collection dropped');
+});
+res.redirect("/");
+});
 
 
 // listen on port 3000
