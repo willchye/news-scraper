@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+    type="text/css" media="screen"/>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style>
+    body{
+      /*background-color: #DECADE*/
+     
+    }
+    #wrapper{
+      width:960px;
+      margin: 0 auto;
+      padding-top: 5%;
+    }
+    #articles{
+      width:60%;
+      height:700px;
+      display:inline-block;
+      overflow: auto;
+      padding:20px;
+      border: 1px solid black;
+      background-color:#3b5998;
+    }
+    #articles p{
+      padding:30px;
+      border: 1px solid black;
+      background-color:white;
+
+    }
+    #notes{
+      width:30%;
+      float:right;
+    }
+    textarea, input{
+      display:block;
+      width:100%;
+      background-color: #FCF5C7;
+    }
+    input{
+      height:36px;
+      font-size: 24px;
+    }
+    textarea{
+      height:200px;
+      font-size: 18px;
+    }
+    #header{
+       background-color:#3b5998;
+    }
+    #white{
+      color:white;
+    }
+  </style>
+</head>
+<body>
+  <div id="wrapper">
+   <div class="jumbotron" id="header">
+  <h3 id="white">New York Times Article Summary</h3>
+  <h5 id="white">click on an article to save note</h5>
+  <p>...</p>
+  <p><a class="btn btn-primary btn-lg" href="#" role="button" id="scrape">Scrape It</a></p>
+   <p><a class="btn btn-primary btn-lg" href="#" role="button" id="json">JSON</a></p>
+</div>
+    <div id="articles"></div>
+    <div id="notes"></div>
+  </div>
+  <script src="https://code.jquery.com/jquery-2.2.1.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
